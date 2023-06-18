@@ -1,0 +1,38 @@
+icon{
+    color: inherit;
+    vertical-align: top;
+}
+.button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    text-decoration: none;
+    padding: 0 0.3rem;
+    color: var(--primary-button);
+    background: var(--text);
+    border: none;
+    text-transform: capitalize;
+    z-index: 1;
+    transition: 0.5s;
+}
+
+.button span {
+    position: absolute;
+    width: 0;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: var(--primary-button);
+    z-index: -1;
+    transition: 0.35s;
+}
+
+.button:hover span {
+    width: 100%;
+}
+
+.button:hover {
+    color: white;
+    text-decoration: underline;
+}

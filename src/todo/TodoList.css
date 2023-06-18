@@ -1,0 +1,101 @@
+:root{
+    --text: #fef6f6;
+    --background: #0d0d0c;
+    --primary-button: #f72634;
+    --secondary-button: #f3fcfb;
+    --accent: #958e92;
+}
+body {
+    background-color: var(--background);
+}
+.list-container{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: flex-start;
+    width: 15rem;
+    margin-left: 1rem;
+    margin-top: 1rem;
+}
+.heading-list {
+    /* display: inline-block; */
+    margin: 0;
+    width: 100%;
+    padding: .5rem 0;
+    text-align: center;
+    text-transform: capitalize;
+    color: var(--background);
+    background-color: var(--text);
+}
+.list{
+    width: 100%;
+    box-sizing: border-box;
+    margin: 0;
+
+    background-color: var(--primary-button);
+    /* display:inline-block; */
+    padding:.5rem;
+    font-size: 1.2rem;
+
+    .list__item {
+        list-style-type: none;
+        text-decoration: none;
+        color: var(--text);
+        text-transform:capitalize ;
+        & .list__item-done {
+            text-decoration: dashed;
+            color: var(--accent);
+        }
+        }
+    
+    .list__icon{
+        
+        color: inherit;
+        vertical-align: top;
+
+    }
+
+    .list__add-task-button{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        position: relative;
+        text-decoration: none;
+        padding: 0 0.3rem;
+        color: var(--primary-button);
+        background: var(--text);
+        border:none;
+        
+        z-index: 1;
+        transition: 0.5s;    
+    }
+    .list__add-task-button span {
+            position: absolute;
+            width: 0;
+            height: 100%;
+            top: 0;
+            left: 0;
+            background: var(--primary-button);
+            z-index: -1;
+            transition: 0.35s;
+        }
+    
+    .list__add-task-button:hover span {
+        width: 100%;
+    }
+    .list__add-task-button:hover {
+        color: white;
+        text-decoration: underline;
+    }
+    /* .list__add-task-button:after {
+        position: absolute;
+        content: "";
+        top: 0;
+        left: 0;
+        width: 0;
+        height: 100%;
+        color: var(--background);
+        transition: all .35s;
+    } */
+    
+}
