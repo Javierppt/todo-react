@@ -5,6 +5,9 @@
     --secondary-button: #f3fcfb;
     --accent: #958e92;
 }
+* {
+    box-sizing: border-box;
+}
 body {
     background-color: var(--background);
 }
@@ -29,7 +32,7 @@ body {
 }
 .list{
     width: 100%;
-    box-sizing: border-box;
+    
     margin: 0;
 
     background-color: var(--primary-button);
@@ -38,15 +41,22 @@ body {
     font-size: 1.2rem;
 
     .list__item {
+        transition: all .35s;
         list-style-type: none;
         text-decoration: none;
         color: var(--text);
+        margin-bottom: .5rem;
         text-transform:capitalize ;
-        & .list__item-done {
-            text-decoration: dashed;
-            color: var(--accent);
+        &:hover {
+            cursor: pointer;
         }
+        
         }
+    .list__item-done {
+        text-decoration-line: line-through;
+        color: var(--accent);
+        transition: all .35s;
+    }
     
     .list__icon{
         

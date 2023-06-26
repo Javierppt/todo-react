@@ -1,25 +1,13 @@
 import React from 'react'
 import './slidingButton.css'
-function handleCreateTask () {
-    openTaskCreator();
-    console.log("a")
-}
-function openTaskCreator() {
-    
-    const element = document.getElementById('createDialog');
-    element.show();
+const dialog = document.getElementById('createDialog');
 
-}
 function SlidingButton(props) {
     return (
-        <>
-            <a className='button' href={props.link} onClick={handleCreateTask}><span></span>{props.children}{props.text}</a>
-            <dialog id='createDialog'>
-                <p>Esto funka</p>
-                <form method='dialog'>
-                    <button>Ok</button>
-                </form>
-            </dialog>
+        <>  
+        {/* In the future make it so that it renders prop.children to make it reusable */}
+            <a className='button' href={props.link} onClick={props.reaction}><span></span>{props.children}{props.text}</a>
+            
         </>
     )
 }

@@ -1,10 +1,9 @@
-import logo from './logo.svg';
 import './App.css';
-import TodoList from './todo/TodoList'
+import TodoDashboard from './todo/TodoDashboard'
 function App() {
 
   return (
-    <TodoList/>
+    <TodoDashboard/>
   );
 }
 

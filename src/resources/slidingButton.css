@@ -33,6 +33,47 @@ icon{
 }
 
 .button:hover {
-    color: white;
+    color: var(--text);
     text-decoration: underline;
+    cursor: pointer;
+}
+
+/* Dialog side */
+.dialog{
+    background: var(--primary-button);
+    color: var(--text);
+    border: none;
+    width: 30%;
+    height: 20%;
+    padding: 0;
+    .dialog__title-bar {
+        background: var(--text);
+        color: var(--primary-button);
+        display: flex;
+        margin: 0;
+        padding: 0;
+        justify-content:space-between;
+        padding: .5rem;
+        &.dialog__close-button {
+            z-index: 1;
+            transition: 0.5s;
+            &.dialog__close-button span {
+                position: absolute;
+                width: 0;
+                height: 100%;
+                top: 0;
+                left: 0;
+                background: var(--primary-button);
+                z-index: -1;
+                transition: 0.35s;
+            }
+            &.dialog__close-button:hover span {
+                width: 100%;
+            }
+            &.dialog__close-button:hover{
+                color: var(--text);
+                cursor: pointer;
+            }
+        }
+    }
 }
