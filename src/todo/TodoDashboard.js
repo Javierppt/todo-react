@@ -1,50 +1,41 @@
-import TodoList from "./TodoList";
-import React, {  useState, useEffect} from "react";
+import React, { useState } from "react";
+import TodoList from "./TodoList"
 import { v4 as uuidv4 } from 'uuid';
-import TaskCreator from "./TaskCreator";
 function Dashboard () {
-    const [state, setState] = useState({tasks: [], openedCreator: false})
-    useEffect(() => {
-        setState({ 
-            tasks : [
-                { id: uuidv4() ,name : 'Meditate after wake up', done: false},
-                { id: uuidv4() ,name : 'make bed', done: false},
-                { id: uuidv4() ,name : 'brush tooth', done: false},
-                { id: uuidv4() ,name : 'breakfast', done: false},
-                { id: uuidv4() ,name : 'study react', done: false},
-                { id: uuidv4() ,name : 'improve arkanoid', done: true},
-            ],
-            openedCreator: false,
-    })},
-    []);
-
-    function markTask(id) {
-        const newTasks = state.tasks.map((task) => {
-            if (id === task.id) {
-                
-                return Object.assign({}, task, task.done===true ?  {done:false} : {done: true});
+    const [state, setState] = useState(
+        {
+            list:{
+                id : uuidv4(),
+                tasks : [
+                    { id: uuidv4() ,name : 'Meditate after wake up', done: false},
+                    { id: uuidv4() ,name : 'make bed', done: false},
+                    { id: uuidv4() ,name : 'brush tooth', done: false},
+                    { id: uuidv4() ,name : 'breakfast', done: false},
+                    { id: uuidv4() ,name : 'study react', done: false},
+                    { id: uuidv4() ,name : 'improve arkanoid', done: false},
+                ]
+                }
+            }
+    )
+    function markTask(taskId) {
+        const newTasks = state.list.tasks.map((task) => {
+            if (taskId === task.id) {
+                return Object.assign({}, task, {done: !task.done});
             }
             else
                 return task;
         })
-        setState({ tasks: newTasks})
-    }
-
-    function handleTaskCreator() {
         setState({
-            tasks: state.tasks,
-            
-            openedCreator: state.openedCreator === true ? false : true})
+            list: Object.assign({}, state.list, { tasks: newTasks})
+        })
+        
     }
 
-    return (
+    return(
         <div>
-            <TodoList 
-            tasks={state.tasks}
-            onNewTask={handleTaskCreator}
-            onTaskClick={markTask}
-            />
-            {state.openedCreator && <TaskCreator/>}
+
+            <TodoList key={state.list.id} id={state.list.id} tasks={state.list.tasks} markTask={markTask}/>
+
         </div>
     )
 }
