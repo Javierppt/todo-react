@@ -4,37 +4,55 @@ import { v4 as uuidv4 } from 'uuid';
 function Dashboard () {
     const [state, setState] = useState(
         {
-            list:{
-                id : uuidv4(),
-                tasks : [
-                    { id: uuidv4() ,name : 'Meditate after wake up', done: false},
-                    { id: uuidv4() ,name : 'make bed', done: false},
-                    { id: uuidv4() ,name : 'brush tooth', done: false},
-                    { id: uuidv4() ,name : 'breakfast', done: false},
-                    { id: uuidv4() ,name : 'study react', done: false},
-                    { id: uuidv4() ,name : 'improve arkanoid', done: false},
+            lists:[
+                {
+                    id : uuidv4(),
+                    title: 'World Domination',
+                    tasks : [
+                        { id: uuidv4() ,name : 'Meditate after wake up', done: false},
+                        { id: uuidv4() ,name : 'make bed', done: false},
+                        { id: uuidv4() ,name : 'brush tooth', done: false},
+                        { id: uuidv4() ,name : 'breakfast', done: false},
+                        { id: uuidv4() ,name : 'study react', done: false},
+                        { id: uuidv4() ,name : 'improve arkanoid', done: false},
+                    ]
+                    },
+                {
+                    id : uuidv4(),
+                    title: 'test',
+                    tasks : [
+                        { id: uuidv4() ,name : 'Test', done: false},
+                        
+                    ]
+                    }
                 ]
-                }
             }
     )
-    function markTask(taskId) {
-        const newTasks = state.list.tasks.map((task) => {
-            if (taskId === task.id) {
-                return Object.assign({}, task, {done: !task.done});
+    function markTask(listId, taskId) {
+        const newLists = state.lists.map((list) => {
+            if (list.id === listId) {
+                const newTasks = list.tasks.map((task) => {
+                    if (task.id === taskId) {
+                        return Object.assign({}, task, { done: !task.done });
+                    }
+                    else {
+                        return task;
+                    }
+                });
+                return { ...list, tasks: newTasks}
             }
-            else
-                return task;
+            return list
         })
         setState({
-            list: Object.assign({}, state.list, { tasks: newTasks})
+            lists: newLists
         })
-        
     }
-
     return(
         <div>
-
-            <TodoList key={state.list.id} id={state.list.id} tasks={state.list.tasks} markTask={markTask}/>
+            {state.lists.map((list) => {
+                return <TodoList key={list.id} title={list.title} id={list.id} tasks={list.tasks} markTask={markTask}/>
+            })}
+            
 
         </div>
     )

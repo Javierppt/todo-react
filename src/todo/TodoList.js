@@ -8,12 +8,12 @@ function TodoList (props) {
     const [state, setState] = useState({tasks: props.tasks})
     return(      
         <div className="list-container">
-            <h3 className='heading-list'>world domination</h3>
+            <h3 className='heading-list'>{props.title}</h3>
                 <ul className="list"> 
                     { useEffect(() => setState({tasks: props.tasks}), [props]) }
                     { state.tasks.map((item) => {
                         return(
-                            <Task key={item.id} id={item.id} name={item.name} done={item.done} markTask={props.markTask}/>
+                            <Task key={item.id} id={item.id} listId={props.id} name={item.name} done={item.done} markTask={props.markTask}/>
                         )
                     })}
                     <SlidingButton text='new task' link='#'> <AiOutlinePlus className="list__icon"/></SlidingButton>
